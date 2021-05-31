@@ -7,7 +7,7 @@ const http = require("http").Server(app);
 const { Server } = require("socket.io");
 const io = new Server(http, {
   cors: {
-    origin: process.env.CORS,
+    origin: "https://doge-meme-review.web.app/",
     methods: ["GET", "POST"],
   },
 });
