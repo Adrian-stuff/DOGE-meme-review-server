@@ -7,7 +7,7 @@ const http = require("http").Server(app);
 const { Server } = require("socket.io");
 const io = new Server(http, {
   cors: {
-    origin: process.env.CORS,
+    origin: "https://doge-meme-review.web.app",
     methods: ["GET", "POST"],
   },
 });
@@ -28,6 +28,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("reqMeme", async (subreddit) => {
+    subreddit = subreddit || "";
     const data = await fetchMeme(subreddit, connectedUsers[socket.id].room);
     console.log(subreddit);
     console.log(connectedUsers[socket.id].room);
@@ -38,7 +39,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", async (req, callback) => {
-    if (
+    try{
+      if (
       req.room.replace(/\s/g, "").length > 0 &&
       req.username.replace(/\s/g, "").length > 0
     ) {
@@ -61,6 +63,7 @@ io.on("connection", (socket) => {
         success: false,
         message: "Please fill out the form",
       });
+    }}catch(error){
     }
   });
 
