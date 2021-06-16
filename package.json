@@ -4,7 +4,7 @@
   "description": "server for meme_review project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ."
+    "start": "node ."
   },
   "author": "Adrian De Vera",
   "license": "ISC",
