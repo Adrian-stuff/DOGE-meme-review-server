@@ -76,7 +76,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on("message", (req) => {
-    io.to(connectedUsers[socket.id].room).emit("message", req);
+    try{
+	io.to(connectedUsers[socket.id].room).emit("message", req);
+    }catch(e){}
   });
 });
 
